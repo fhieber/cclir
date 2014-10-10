@@ -53,7 +53,7 @@ CXXFLAGS="$CXX11_SWITCH $CXXFLAGS -fPIC -g -O3"
 CFLAGS="$CFLAGS -fPIC -g -O3"
 
 AC_CONFIG_FILES([Makefile])
-AC_CONFIG_FILES([core/Makefile])
+AC_CONFIG_FILES([src/Makefile])
 
 # end
 AC_OUTPUT

@@ -1,3 +1,5 @@
+SUBDIRS = core preprocess retrieval training
+
 bin_PROGRAMS = get-tf-vectors
 
 noinst_LIBRARIES = libclir.a 

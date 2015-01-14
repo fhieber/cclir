@@ -1,4 +1,4 @@
-SUBDIRS = core preprocess retrieval training
+#SUBDIRS = core preprocess retrieval training
 
 bin_PROGRAMS = get-tf-vectors
 

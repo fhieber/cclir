@@ -1,7 +1,7 @@
-#include "clir.h"
+#include "src/core/clir.h"
 
 bool init_params(int argc, char** argv, po::variables_map* cfg) {
-	po::options_description cl("\nCreates an Index from Documents\nCommand Line Options");
+	po::options_description cl("\nCreates an inverted index from from input documents (text or vectors)\nCommand Line Options");
 	cl.add_options()
 			("input,i", po::value<string>()->default_value("-"), "* Input documents (stdin)")
 			("output,o", po::value<string>()->default_value("-"), "* Output File (stdout)")

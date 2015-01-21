@@ -1,10 +1,3 @@
-/*
- * util.h
- *
- *  Created on: Aug 10, 2012
- *      Author: hieber
- */
-
 #ifndef UTIL_H_
 #define UTIL_H_
 

@@ -1,9 +1,3 @@
-/*
- * util.cpp
- *
- *  Created on: Aug 10, 2012
- */
-
 #include "util.h"
 
 /*

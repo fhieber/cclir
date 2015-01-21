@@ -1,9 +1,9 @@
-#include "clir.h"
+#include "src/core/clir.h"
 
 using namespace CLIR;
 
 bool init_params(int argc, char** argv, po::variables_map* cfg) {
-	po::options_description cl("\nPerforms bm25-based batch retrieval based on Ture's SIGIR'12 models for a set of queries on a document tf collection coming from STDIN.\nCommand Line Options");
+	po::options_description cl("\nPerforms bm25-based batch retrieval of input queries (DT vectors OR PSQs). Queries are loaded into memory. Documents from STDIN.\nCommand Line Options");
 	cl.add_options()
 			("queries,q", po::value<string>(), "* File containing Queries")
 			("psq,p", po::value<bool>()->zero_tokens(), "indicate if queries are Probabilistic Structured Queries (PSQs)")			

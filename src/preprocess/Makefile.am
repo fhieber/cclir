@@ -1,7 +1,10 @@
-bin_PROGRAMS = vectorize compute_term_weights generate_psqs interpolate_queries build_index
+bin_PROGRAMS = vectorize compute_term_weights merge_dftables generate_psqs interpolate_queries build_index
 
 vectorize_SOURCES = vectorize.cpp
 vectorize_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz
+
+merge_dftables_SOURCES = merge_dftables.cpp
+merge_dftables_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz
 
 compute_term_weights_SOURCES = compute_term_weights.cpp
 compute_term_weights_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz

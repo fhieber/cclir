@@ -74,6 +74,7 @@ AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([src/Makefile])
 AC_CONFIG_FILES([src/core/Makefile])
 AC_CONFIG_FILES([src/preprocess/Makefile])
+AC_CONFIG_FILES([src/search/Makefile])
 
 # end
 AC_OUTPUT

@@ -1,11 +1,4 @@
-/*
- * merge-dftables.cpp
- *
- *  Created on: Aug 22, 2012
- *      Author: hieber
- */
-
-#include "merge-dftables.h"
+#include "merge_dftables.h"
 
 int main(int argc, char** argv) {
 	if (argc < 2) {

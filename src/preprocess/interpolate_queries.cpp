@@ -1,12 +1,4 @@
-/*
- * interpolate-queries.cpp
- *
- *  Created on: May 28, 2013
- *
- */
-
-
-#include "interpolate-queries.h"
+#include "interpolate_queries.h"
 
 int main(int argc, char** argv) {
 

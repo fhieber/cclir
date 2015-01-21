@@ -1,17 +1,13 @@
-/*
- * interpolate-queries.h
- *
- *  Created on: May 28, 2013
- */
-
 #ifndef INTERPOLATE_QUERIES_H_
 #define INTERPOLATE_QUERIES_H_
 
 #include <iostream>
 
 #include <boost/program_options.hpp>
+// cdec imports
 #include "filelib.h"
-#include "query.h"
+
+#include "src/core/query.h"
 
 using namespace std;
 using namespace CLIR;
@@ -21,7 +17,7 @@ namespace po = boost::program_options;
  * loads and parses commandline parameters
  */
 bool init_params(int argc, char** argv, po::variables_map* cfg) {
-	po::options_description cl("\nInterpolates two queries: lambda *#1 + (1-lambda) * #2. Writes to STDOUT\nOptions");
+	po::options_description cl("\nInterpolates (psq) queries from two files: lambda *#1 + (1-lambda) * #2. Writes to STDOUT\nOptions");
 	cl.add_options()
 			("1,1", po::value<string>(), "* Query #1")
 			("2,2", po::value<string>(), "* Query #2")

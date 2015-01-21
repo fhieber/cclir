@@ -1,10 +1,3 @@
-/*
- * get-optiontables.h
- *
- *  Created on: Nov 15, 2012
- *      Author: hieber
- */
-
 #ifndef GET_OPTIONTABLES_H_
 #define GET_OPTIONTABLES_H_
 
@@ -13,18 +6,19 @@
 
 #include <boost/program_options.hpp>
 
+// cdec imports
 #include "decoder.h"
 #include "ff_register.h"
 #include "verbose.h"
 #include "filelib.h"
-#include "observer.h"
 
-#include "document.h"
-#include "query.h"
-#include "stopwords.h"
-#include "dftable.h"
-#include "nbest-ttable.h"
-#include "lexical-ttable.h"
+#include "src/core/observer.h"
+#include "src/core/document.h"
+#include "src/core/query.h"
+#include "src/core/stopwords.h"
+#include "src/core/dftable.h"
+#include "src/core/nbest-ttable.h"
+#include "src/core/lexical-ttable.h"
 
 using namespace std;
 using namespace CLIR;

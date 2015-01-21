@@ -1,17 +1,10 @@
-/*
- * get-optiontables.cpp
- *
- *  Created on: Nov 15, 2012
- *      Author: hieber
- */
-
-#include "get-optiontables.h"
+#include "generate_psqs.h"
 
 /*
  * loads and parses commandline parameters
  */
 bool init_params(int argc, char** argv, po::variables_map* cfg) {
-	po::options_description cl("\nCreates Probabilistic Structured Queries (PSQs) for input by using the cdec decoder.\nCommand Line Options");
+	po::options_description cl("\nCreates Probabilistic Structured Queries (PSQs) from source input (translates using cdec).\nCommand Line Options");
 	cl.add_options()
 			("input,i",				po::value<string>()->default_value("-"), "input file. Use '-' for STDIN.")
 			("decoder_config,c",	po::value<string>(),					"* decoder config for cdec.")

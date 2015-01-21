@@ -1,6 +1,6 @@
 AC_CONFIG_MACRO_DIR([m4])
 AC_INIT([cclir],[2014-10-09])
-AC_CONFIG_SRCDIR([src/clir.h])
+AC_CONFIG_SRCDIR([src])
 AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS(config.h)
 
@@ -54,6 +54,8 @@ CFLAGS="$CFLAGS -fPIC -g -O3"
 
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([src/Makefile])
+AC_CONFIG_FILES([src/core/Makefile])
+AC_CONFIG_FILES([src/preprocess/Makefile])
 
 # end
 AC_OUTPUT

@@ -6,10 +6,12 @@
 
 #include <boost/program_options.hpp>
 
+// cdec imports
 #include "filelib.h"
-#include "dftable.h"
-#include "document.h"
-#include "stopwords.h"
+// core imports
+#include "src/core/dftable.h"
+#include "src/core/document.h"
+#include "src/core/stopwords.h"
 
 using namespace std;
 using namespace CLIR;

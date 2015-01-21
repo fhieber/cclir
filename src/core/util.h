@@ -16,10 +16,12 @@
 
 #include <boost/algorithm/string.hpp>
 
-#include "tdict.h"
+// cdec imports
 #include "prob.h"
 #include "sparse_vector.h"
 #include "stringlib.h"
+#include "tdict.h"
+
 
 typedef SparseVector<prob_t> TermVector;
 

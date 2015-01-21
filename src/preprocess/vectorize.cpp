@@ -1,15 +1,12 @@
-#include "get-tf-vectors.h"
+#include "vectorize.h"
 
-/*
- * loads and parses commandline parameters
- */
 bool init_params(int argc, char** argv, po::variables_map* cfg) {
-	po::options_description cl("\nCreates term frequency vectors via various methods: no projection, decoder or ttable projection.\nCommand Line Options");
+	po::options_description cl("\nTransforms text input into term vectors. Can write document frequency table as side product.\nCommand Line Options");
 	cl.add_options()
 			("input,i",	po::value<string>()->default_value("-"),"input file. Use '-' for STDIN.")
-			("output,o",po::value<string>()->default_value("-"),"output file for the term frequency vectors. Use '-' for STDOUT.")
-			("stopwords,s",po::value<string>(),		"stopword file")
-			("dftable,d",po::value<string>(),		"output file for the document frequency table")
+			("output,o",po::value<string>()->default_value("-"),"output file for term frequency vectors. Use '-' for STDOUT.")
+			("stopwords,s",po::value<string>(),		"file with stopwords to filter")
+			("dftable,d",po::value<string>(),		"output file for document frequency table")
 			("skip-empty",po::value<bool>()->zero_tokens(),	"do not print empty vectors in output")
 			("boolean", po::value<bool>()->zero_tokens(), "compute boolean vectors")
 			("verbose,v",po::value<bool>()->zero_tokens(),	"verbose output to STDERR.")

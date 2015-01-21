@@ -7,7 +7,7 @@
 #include <vector>
 #include <unordered_map>
 
-#include "clir.h"
+#include "src/core/clir.h"
 
 using namespace std;
 

@@ -1,4 +1,4 @@
-#include "get-weighted-vectors.h"
+#include "compute_term_weights.h"
 
 
 int main(int argc, char** argv) {

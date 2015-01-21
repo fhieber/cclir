@@ -4,14 +4,14 @@
 #include <iostream>
 #include <boost/program_options.hpp>
 
-#include "clir.h"
+#include "src/core/clir.h"
 
 using namespace std;
 using namespace CLIR;
 namespace po = boost::program_options;
 
 bool init_params(int argc, char** argv, po::variables_map* cfg) {
-	po::options_description cl("\nCalculates term weights for tf vectors from STDIN.\nCommand Line Options");
+	po::options_description cl("\nComputes various term weights for input term vectors (reads from STDIN)\nCommand Line Options");
 	cl.add_options()
 			("dftable,d", po::value<string>(), "* DF table to load")
 			("weight_metric,w", po::value<string>()->default_value("classicbm25"), "Term weighting metric (classicbm25, bm25, classicbm25tf, tfidf, stfidf). default is classicbm25.")

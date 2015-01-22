@@ -2,3 +2,5 @@
 **.in
 **Makefile
 **.a
+**.history
+**.deps

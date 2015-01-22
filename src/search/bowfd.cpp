@@ -1,6 +1,7 @@
-#include "ranker.h"
-#include "clir-scoring.h"
 #include <climits>
+
+#include "src/core/bowfd.h"
+#include "src/core/clir-scoring.h"
 
 using namespace CLIR;
 
@@ -20,7 +21,10 @@ bool init_params(int argc, char** argv, po::variables_map* conf) {
 		("default_ir_weight", po::value<double>()->default_value(0.0), "default ir weight for term match")
 		("word_classes", po::value<string>()->default_value(""), "a file containing word2class mappings for extended matching")
 		("K,k", po::value<int>(), "* Keep track of K-best documents per query. (Number of results per query)")
-		("jobs,j", po::value<int>()->default_value(1), "Number of threads. Default: number of cores")
+		#ifdef _OPENMP
+		("jobs,j", po::value<int>(), "Number of threads. Default: number of cores")
+		#else
+		#endif
 		("documents,d", po::value<string>(), "* File containing document classic BM25 vectors.")
 		("dftable", po::value<string>(), "* DF table to load")
 		("beam_size,b", po::value<unsigned>()->default_value(10000), "# of edges evaluated at each node during document scoring.")
@@ -59,7 +63,11 @@ int main(int argc, char** argv) {
 	po::variables_map cfg;
 	if (!init_params(argc,argv,&cfg)) return 1;
 
-	omp_set_num_threads(cfg["jobs"].as<int>());
+	// set number of jobs
+	#ifdef _OPENMP
+	if (cfg.count("jobs")) omp_set_num_threads(cfg["jobs"].as<int>());
+	#else
+	#endif
 
 	// result separator
 	const string separator = cfg["result_separator"].as<string>();
@@ -120,7 +128,8 @@ int main(int argc, char** argv) {
 
 	string id, sentence;
 	vector<CLIR::Score> results;
-	double q_start, q_stop, q_time, total_time;
+	double q_start, q_stop, q_time;
+	double total_time = 0;
 	unsigned Q=0;
 	CLIR::IRScorer* irs = NULL;
 	if (cfg.count("qrels")) {

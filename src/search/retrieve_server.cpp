@@ -52,11 +52,7 @@ void runServer(const short& J, const string& port, const vector<CLIR::Document>&
 	TIMER::timestamp_t t0, t1;
 	double time;
 
-	// set number of jobs
-	#ifdef _OPENMP
-	if (cfg.count("jobs")) omp_set_num_threads(cfg["jobs"].as<int>());
-	#else
-	#endif
+
 
 	while (true) {
 
@@ -189,6 +185,9 @@ int main(int argc, char** argv) {
 			N = dft.mMaxDf;
 		}
 		Scorer* ranker = CLIR::setupScorer(cfg["model"].as<string>(), N, avgDocLen, &dft);
+
+		// set number of jobs
+		unsigned jobs = cfg.count("jobs") ? cfg["jobs"].as<int>() : 0
 		
 		runServer(cfg["jobs"].as<int>(), cfg["port"].as<string>(), documents, ranker, cfg.count("no-qtf"));
 		

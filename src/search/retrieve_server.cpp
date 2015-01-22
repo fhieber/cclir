@@ -185,11 +185,8 @@ int main(int argc, char** argv) {
 			N = dft.mMaxDf;
 		}
 		Scorer* ranker = CLIR::setupScorer(cfg["model"].as<string>(), N, avgDocLen, &dft);
-
-		// set number of jobs
-		unsigned jobs = cfg.count("jobs") ? cfg["jobs"].as<int>() : 0
 		
-		runServer(cfg["jobs"].as<int>(), cfg["port"].as<string>(), documents, ranker, cfg.count("no-qtf"));
+		runServer(cfg.count("jobs") ? cfg["jobs"].as<int>() : 0, cfg["port"].as<string>(), documents, ranker, cfg.count("no-qtf"));
 		
 		delete ranker;
 		

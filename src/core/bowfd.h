@@ -1,11 +1,20 @@
-#ifndef _RANKER_H_
-#define _RANKER_H_
-
-#include <boost/shared_ptr.hpp>
-#include <omp.h>
+#ifndef _BOWFD_H_
+#define _BOWFD_H_
 
 #include <vector>
 #include <algorithm>    // std::reverse
+#include <boost/shared_ptr.hpp>
+#include <queue>
+
+#ifdef _OPENMP
+	#include <omp.h>
+#else
+	#include <time.h>
+	#define omp_get_wtime() clock()
+	#define omp_get_thread_num() 0
+#endif
+
+// cdec imports
 #include "config.h"
 #include "sentence_metadata.h"
 #include "verbose.h"
@@ -19,14 +28,12 @@
 #include "ff_register.h"
 #include "decoder.h"
 #include "inside_outside.h"
-#include <queue>
-
-#include "clir.h"
-#include "ff_ir.h"
 #include "weights.h"
 #include "feature_vector.h" // typedefs FeatureVector,WeightVector, DenseWeightVector
 
-#include "viterbi_ranker.h"
+#include "src/core/clir.h"
+#include "src/core/bowfd_features.h"
+#include "src/core/bowfd_inference.h"
 
 struct QuerySearchSpace : public DecoderObserver {
 	QuerySearchSpace() {}

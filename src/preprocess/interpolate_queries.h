@@ -2,8 +2,8 @@
 #define INTERPOLATE_QUERIES_H_
 
 #include <iostream>
-
 #include <boost/program_options.hpp>
+
 // cdec imports
 #include "filelib.h"
 

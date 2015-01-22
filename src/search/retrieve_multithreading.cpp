@@ -1,6 +1,11 @@
 #include "src/core/clir.h"
 #include "src/core/clir-scoring.h"
-#include <omp.h>
+
+#ifdef _OPENMP
+	#include <omp.h>
+#else
+	#define omp_get_thread_num() 0
+#endif
 
 using namespace CLIR;
 
@@ -15,7 +20,10 @@ bool init_params(int argc, char** argv, po::variables_map* cfg) {
 			("dftable,d", po::value<string>(), "table containing the df values if -c is specified")
 			("K,k", po::value<int>()->default_value(1000), "* Keep track of K-best documents per query. (Number of results per query)")
 			("run-id,r", po::value<string>()->default_value("1"), "run id shown in the output")
+			#ifdef _OPENMP
 			("jobs,j", po::value<int>(), "Number of threads. Default: number of cores")
+			#else
+			#endif
 			("model,m", po::value<string>()->default_value("classicbm25"), "Scoring function (bm25, classicbm25, classicbm25tf, tfidf, stfidf). default is classicbm25. If metric is tfidf/stfidf, cosine is calculated.")
 			("no-qtf", po::value<bool>()->zero_tokens(), "do not use query term frequency for bm25 scoring")
 			("qrels", po::value<string>(), "if specified, will compute IR metrics directly on the output list. No trec_eval required.")
@@ -45,7 +53,10 @@ int main(int argc, char** argv) {
 	if (!init_params(argc,argv, &cfg)) exit(1); // something is wrong
 
 	// set number of jobs
+	#ifdef _OPENMP
 	if (cfg.count("jobs")) omp_set_num_threads(cfg["jobs"].as<int>());
+	#else
+	#endif
 
 	const bool no_qtf = cfg.count("no-qtf");
 	string run_id = cfg["run-id"].as<string>();

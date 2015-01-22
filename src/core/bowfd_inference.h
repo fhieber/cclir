@@ -1,13 +1,14 @@
-#ifndef _VITERBI_RANKER_H_
-#define _VITERBI_RANKER_H_
+#ifndef _BOWFD_INFERENCE_H_
+#define _BOWFD_INFERENCE_H_
 
 #include <vector>
 #include <limits>
+//#include <boost/make_shared.hpp>
+// cdec imports
 #include "prob.h"
 #include "hg.h"
 #include "tdict.h"
 #include "filelib.h"
-#include <boost/make_shared.hpp>
 
 template<class Traversal,class WeightFunction>
 typename WeightFunction::Weight ViterbiRanker(

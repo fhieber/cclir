@@ -1,6 +1,3 @@
-SUBDIRS = core preprocess search 
-
-
-#SUBDIRS = core preprocess retrieval training
+SUBDIRS = core preprocess search training
 
 

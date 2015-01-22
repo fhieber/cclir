@@ -1,22 +1,25 @@
-#ifndef _FF_IR_H_
-#define _FF_IR_H_
+#ifndef _BOWFD_FEATURES_H_
+#define _BOWFD_FEATURES_H_
 
 #include <vector>
 #include <map>
+#include <queue>
+// cdec imports
 #include "prob.h"
 #include "hg.h"
 #include "tdict.h"
 #include "fdict.h"
-#include "irfdict.h"
-#include <queue>
-
-#include "clir.h"
-#include "index.h"
-#include "dftable.h"
 #include "weights.h"
+
+#include "src/core/clir.h"
+#include "src/core/index.h"
+#include "src/core/dftable.h"
+
 #include "feature_vector.h" // typedefs FeatureVector, WeightVector, DenseWeightVector
 
 namespace CLIR {
+
+const string IR_PREFIX = "IR:";
 
 string escape_token(const string& s) {
 	string y = s;
@@ -33,6 +36,16 @@ string escape_token(const string& s) {
 WordID CreateIRFID(const WordID& t) {
   	return FD::Convert("IR:" + escape_token(TD::Convert(t))); // FOR NOW USE A SINGLE FEATURE SPACE!
 }
+
+/*
+ * This is a bit of a hack to determine if the feature hash is for an IR feature...
+ */
+ inline bool ISIRFID(const int x) {
+ 	string fname = FD::Convert(x);
+ 	if (fname.size() < IR_PREFIX.size())
+ 		return false;
+ 	return (std::mismatch(IR_PREFIX.begin(), IR_PREFIX.end(), fname.begin()).first == IR_PREFIX.end());
+ }
 
 // IR feature extractor:
 // extracts feature ids and values for sparse lexical ir features, e.g. IR:word=1 if lexical.

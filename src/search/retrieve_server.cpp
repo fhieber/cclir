@@ -1,6 +1,11 @@
-#include "clir.h"
-#include "distclir.h"
-#include <omp.h>
+#ifdef _OPENMP
+	#include <omp.h>
+#else
+	#define omp_get_thread_num() 0
+#endif
+
+#include "src/core/clir.h"
+#include "src/core/distclir.h"
 
 using namespace CLIR;
 
@@ -10,7 +15,10 @@ bool init_params(int argc, char** argv, po::variables_map* cfg) {
 			("index,i", po::value<string>(), " * Inverted Index for Documents")
 			("documents,c", po::value<string>(), "* File containing document vectors (tf for bm25, tfidf for tfidf)")
 			("dftable,d", po::value<string>(), "* table containing the df values. only used for bm25")
+			#ifdef _OPENMP
 			("jobs,j", po::value<int>(), "Number of threads. Default: number of cores")
+			#else
+			#endif
 			("port", po::value<string>()->default_value("5555"), "port this server listens to")
 			("no-qtf", po::value<bool>()->zero_tokens(), "do not use query term frequency for bm25 scoring")
 			("model,m", po::value<string>()->default_value("classicbm25"), "Scoring function (classicbm25, bm25, classicbm25tf, tfidf, stfidf). default is classicbm25. If metric is tfidf/stfidf, cosine is calculated.")
@@ -44,7 +52,11 @@ void runServer(const short& J, const string& port, const vector<CLIR::Document>&
 	TIMER::timestamp_t t0, t1;
 	double time;
 
-	omp_set_num_threads(J);
+	// set number of jobs
+	#ifdef _OPENMP
+	if (cfg.count("jobs")) omp_set_num_threads(cfg["jobs"].as<int>());
+	#else
+	#endif
 
 	while (true) {
 

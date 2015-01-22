@@ -1,4 +1,4 @@
-bin_PROGRAMS = retrieve retrieve_multithreading bowfd
+bin_PROGRAMS = retrieve retrieve_multithreading retrieve_client retrieve_server bowfd
 
 retrieve_SOURCES = retrieve.cpp
 retrieve_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz
@@ -6,6 +6,13 @@ retrieve_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.
 retrieve_multithreading_SOURCES = retrieve_multithreading.cpp
 retrieve_multithreading_CXXFLAGS = $(OPENMP_CXXFLAGS)
 retrieve_multithreading_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz
+
+retrieve_client_SOURCES = retrieve_client.cpp
+retrieve_client_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz -lzmq
+
+retrieve_server_SOURCES = retrieve_server.cpp
+retrieve_server_CXXFLAGS = $(OPENMP_CXXFLAGS)
+retrieve_server_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz -lzmq
 
 bowfd_SOURCES = bowfd.cpp
 bowfd_CXXFLAGS = $(OPENMP_CXXFLAGS)

@@ -1,6 +1,6 @@
-#include "clir.h"
-#include "clir-scoring.h"
-#include "distclir.h"
+#include "src/core/clir.h"
+#include "src/core/clir-scoring.h"
+#include "src/core/distclir.h"
 
 bool init_params(int argc, char** argv, po::variables_map* cfg) {
 	po::options_description cl("\nPerforms bm25-based batch retrieval by connecting to a clir-server at the given port.\nCommand Line Options");

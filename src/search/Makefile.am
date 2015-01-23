@@ -1,13 +1,8 @@
-bin_PROGRAMS = retrieve retrieve_multithreading bowfd
+bin_PROGRAMS = retrieve bowfd
 
 retrieve_SOURCES = retrieve.cpp
+retrieve_CXXFLAGS = $(OPENMP_CXXFLAGS)
 retrieve_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz
-
-retrieve_multithreading_SOURCES = retrieve_multithreading.cpp
-retrieve_multithreading_CXXFLAGS = $(OPENMP_CXXFLAGS)
-retrieve_multithreading_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz
-
-
 
 bowfd_SOURCES = bowfd.cpp
 bowfd_CXXFLAGS = $(OPENMP_CXXFLAGS)
@@ -22,6 +17,10 @@ if HAVE_ZMQ
 	retrieve_server_CXXFLAGS = $(OPENMP_CXXFLAGS)
 	retrieve_server_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz -lzmq
 endif
+
+#retrieve_multithreading_SOURCES = retrieve_multithreading.cpp
+#retrieve_multithreading_CXXFLAGS = $(OPENMP_CXXFLAGS)
+#retrieve_multithreading_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz
 
 # DOES NOT COMPILE RIGHT NOW (!)
 #baseline_retrieval_SOURCES = baseline_retrieval.cpp

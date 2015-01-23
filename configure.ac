@@ -21,10 +21,16 @@ else
 	exit 1
 fi
 echo "cdec $CDEC_ROOT"
-#zmq
-AM_CONDITIONAL([HAVE_ZMQ], false)
-AC_CHECK_HEADERS(zmq.hpp,AC_DEFINE(HAVE_ZMQ,true,[Do we have ZMQ]))
 
+#zmq
+AC_CHECK_HEADER(zmq.hpp)
+if test "$ac_cv_header_zmq_hpp" = no
+then
+	AC_MSG_WARN([zmq.hpp not found. Will not build server/client programs!])
+	AM_CONDITIONAL([HAVE_ZMQ], false)
+else
+	AM_CONDITIONAL([HAVE_ZMQ], true)
+fi
 
 AC_PROG_LIBTOOL
 AC_PROG_CC

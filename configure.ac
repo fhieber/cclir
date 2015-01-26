@@ -17,10 +17,9 @@ then
 	AM_CONDITIONAL([HAVE_CDEC], true)
 	AC_MSG_NOTICE([CDEC_ROOT set to $CDEC_ROOT;])
 else
-	echo "BLAAA"
+	AC_MSG_ERROR([cannot find cdec. Specify with --with-cdec])
 	exit 1
 fi
-echo "cdec $CDEC_ROOT"
 
 #zmq
 AC_CHECK_HEADER(zmq.hpp)

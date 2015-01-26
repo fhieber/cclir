@@ -21,16 +21,6 @@ else
 	exit 1
 fi
 
-#zmq
-AC_CHECK_HEADER(zmq.hpp)
-if test "$ac_cv_header_zmq_hpp" = no
-then
-	AC_MSG_WARN([zmq.hpp not found. Will not build server/client programs!])
-	AM_CONDITIONAL([HAVE_ZMQ], false)
-else
-	AM_CONDITIONAL([HAVE_ZMQ], true)
-fi
-
 AC_PROG_LIBTOOL
 AC_PROG_CC
 AC_PROG_CXX
@@ -78,6 +68,16 @@ LIBS="$LIBS $BOOST_PROGRAM_OPTIONS_LIBS $BOOST_SERIALIZATION_LIBS $BOOST_SYSTEM_
 CPPFLAGS="-DPIC $CPPFLAGS -DHAVE_CONFIG_H"
 CXXFLAGS="$CXX11_SWITCH $CXXFLAGS -fPIC -g -O3"
 CFLAGS="$CFLAGS -fPIC -g -O3"
+
+#zmq
+AC_CHECK_HEADER(zmq.hpp)
+if test "$ac_cv_header_zmq_hpp" = no
+then
+	AC_MSG_WARN([zmq.hpp not found. Will not build server/client programs!])
+	AM_CONDITIONAL([HAVE_ZMQ], false)
+else
+	AM_CONDITIONAL([HAVE_ZMQ], true)
+fi
 
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([src/Makefile])

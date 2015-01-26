@@ -1,13 +1,5 @@
 bin_PROGRAMS = retrieve bowfd
 
-retrieve_SOURCES = retrieve.cpp
-retrieve_CXXFLAGS = $(OPENMP_CXXFLAGS)
-retrieve_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz
-
-bowfd_SOURCES = bowfd.cpp
-bowfd_CXXFLAGS = $(OPENMP_CXXFLAGS)
-bowfd_LDADD = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/decoder/libcdec.a $(CDEC_ROOT)/mteval/libmteval.a $(CDEC_ROOT)/utils/libutils.a $(CDEC_ROOT)/klm/search/libksearch.a $(CDEC_ROOT)/klm/lm/libklm.a $(CDEC_ROOT)/klm/util/libklm_util.a $(CDEC_ROOT)/klm/util/double-conversion/libklm_util_double.a -lz
-
 if HAVE_ZMQ
 	bin_PROGRAMS += retrieve_client retrieve_server
 	retrieve_client_SOURCES = retrieve_client.cpp
@@ -17,6 +9,16 @@ if HAVE_ZMQ
 	retrieve_server_CXXFLAGS = $(OPENMP_CXXFLAGS)
 	retrieve_server_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz -lzmq
 endif
+
+retrieve_SOURCES = retrieve.cpp
+retrieve_CXXFLAGS = $(OPENMP_CXXFLAGS)
+retrieve_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz
+
+bowfd_SOURCES = bowfd.cpp
+bowfd_CXXFLAGS = $(OPENMP_CXXFLAGS)
+bowfd_LDADD = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/decoder/libcdec.a $(CDEC_ROOT)/mteval/libmteval.a $(CDEC_ROOT)/utils/libutils.a $(CDEC_ROOT)/klm/search/libksearch.a $(CDEC_ROOT)/klm/lm/libklm.a $(CDEC_ROOT)/klm/util/libklm_util.a $(CDEC_ROOT)/klm/util/double-conversion/libklm_util_double.a -lz
+
+
 
 #retrieve_multithreading_SOURCES = retrieve_multithreading.cpp
 #retrieve_multithreading_CXXFLAGS = $(OPENMP_CXXFLAGS)

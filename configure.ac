@@ -77,6 +77,7 @@ then
 	AM_CONDITIONAL([HAVE_ZMQ], false)
 else
 	AM_CONDITIONAL([HAVE_ZMQ], true)
+	AC_SUBST(HAVE_ZMQ,true)
 fi
 
 AC_CONFIG_FILES([Makefile])

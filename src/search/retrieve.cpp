@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
 	#ifdef _OPENMP
 	if (cfg.count("jobs")) {
 		omp_set_num_threads(cfg["jobs"].as<int>());
-		cerr << "CLIR::Using " << cfg["jobs"].as<int>() << " threads.\n"
+		cerr << "CLIR::Using " << cfg["jobs"].as<int>() << " threads.\n";
 	}
 	#else
 	#endif

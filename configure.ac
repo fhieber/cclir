@@ -87,6 +87,9 @@ AC_CONFIG_FILES([src/preprocess/Makefile])
 AC_CONFIG_FILES([src/search/Makefile])
 AC_CONFIG_FILES([src/training/Makefile])
 AC_CONFIG_FILES([src/training/bow_fd/Makefile])
+AC_CONFIG_FILES([src/training/reldec/Makefile])
+AC_CONFIG_FILES([src/training/pltrain/Makefile])
+AC_CONFIG_FILES([src/training/adarank/Makefile])
 
 # end
 AC_OUTPUT

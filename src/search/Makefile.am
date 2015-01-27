@@ -1,14 +1,14 @@
 bin_PROGRAMS = retrieve bowfd
 if HAVE_ZMQ
 	bin_PROGRAMS += retrieve_client retrieve_server
+	
+	retrieve_client_SOURCES = retrieve_client.cpp
+	retrieve_client_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz -lzmq
+
+	retrieve_server_SOURCES = retrieve_server.cpp
+	retrieve_server_CXXFLAGS = $(OPENMP_CXXFLAGS)
+	retrieve_server_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz -lzmq
 endif
-
-retrieve_client_SOURCES = retrieve_client.cpp
-retrieve_client_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz -lzmq
-
-retrieve_server_SOURCES = retrieve_server.cpp
-retrieve_server_CXXFLAGS = $(OPENMP_CXXFLAGS)
-retrieve_server_LDADD   = $(top_srcdir)/src/core/libclir.a $(CDEC_ROOT)/utils/libutils.a -lz -lzmq
 
 retrieve_SOURCES = retrieve.cpp
 retrieve_CXXFLAGS = $(OPENMP_CXXFLAGS)
